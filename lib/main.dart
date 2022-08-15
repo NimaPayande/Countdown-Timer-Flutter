@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timer/constants.dart';
-import 'package:timer/set_time.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,14 +46,25 @@ class _CountDownTimerState extends State<CountDownTimer> {
               height: 250,
               width: 250,
               strokeWidth: 40,
-              onComplete: () {},
+              onComplete: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    'Finished',
+                    style: smallTextStyle,
+                  ),
+                  behavior: SnackBarBehavior.floating,
+                  duration: const Duration(seconds: 2),
+                  backgroundColor: kblueColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  // padding: const EdgeInsets.only(left: 20, top: 20),
+                ));
+              },
               strokeCap: StrokeCap.round,
+              isReverseAnimation: true,
               ringColor: kgreyColor,
               autoStart: true,
-              textStyle: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold),
+              textStyle: largeTextStyle,
             ),
           ),
           const SizedBox(
@@ -64,13 +74,13 @@ class _CountDownTimerState extends State<CountDownTimer> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Button(
-                  text: 'Resume',
-                  onPressed: () => _countDownController.resume()),
+                  text: 'Restart',
+                  onPressed: () => _countDownController.start()),
               Button(
                   text: 'Stop', onPressed: () => _countDownController.pause()),
               Button(
-                  text: 'Restart',
-                  onPressed: () => _countDownController.start())
+                  text: 'Resume',
+                  onPressed: () => _countDownController.resume()),
             ],
           )
         ],
@@ -91,7 +101,7 @@ class Button extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: const TextStyle(color: Colors.black),
+          style: smallTextStyle,
         ));
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:timer/constants.dart';
 
 void main() {
@@ -77,7 +76,7 @@ class _CountDownTimerState extends State<CountDownTimer> {
                   text: 'Restart',
                   onPressed: () => _countDownController.start()),
               Button(
-                  text: 'Stop', onPressed: () => _countDownController.pause()),
+                  text: 'Pause', onPressed: () => _countDownController.pause()),
               Button(
                   text: 'Resume',
                   onPressed: () => _countDownController.resume()),
